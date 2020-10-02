@@ -1,27 +1,68 @@
-//let questions = undefined;
+let correctAns = "";
 
 async function getApi(){
     let response = await fetch (`https://opentdb.com/api.php?amount=10&type=boolean`);
     let data = await response.json();
-    console.log(data);
-    console.log("this is question " + data.results[0].question)
-    console.log("this is correct " + data.results[0].correct_answer);
-    console.log("this is incorrect " + data.results[0].incorrect_answers[0]);
+    //console.log(data);
+    // console.log("this is question " + data.results[0].question)
+    // console.log("this is correct " + data.results[0].correct_answer);
+    // console.log("this is incorrect " + data.results[0].incorrect_answers[0]);
     newQuestion(data.results[0].question);
     //questions = data.results[0].correct_answer;
-    whenTrue(data.results[0].correct_answer);
-    whenFalse(data.results[0].correct_answer);
+    correctAns = data.results[0].correct_answer;
+    console.log(correctAns);
 };
 
 getApi();
 
-let games = document.querySelector(".games_played")
-let wins = document.querySelector(".wins")
-let losses = document.querySelector(".losses")
-games.innertext = 14
-games = 0
-wins = 0
-losses = 0
+// Username 
+let userName = document.querySelector(".user_name")
+let  userBtn = document.querySelector(".user_button")
+let userHeader = document.querySelector(".header-one")
+userBtn.addEventListener("click", function userCreator(){
+    userHeader.innerText = "Player: " + userName.value
+})
+
+// Question
+
+let question = document.querySelector(".Question")
+
+function newQuestion (string) {
+    let p = document.createElement("p")
+    p.innerText = string;
+    question.appendChild(p);
+};
+
+//buttons
+let trueBtn = document.querySelector("#true");
+let falseBtn = document.querySelector("#false");
+
+trueBtn.addEventListener("click", buttonClickTrue);
+falseBtn.addEventListener("click", buttonClickFalse);
+
+function buttonClickTrue(correctAns) {
+    if (correctAns === "True"){
+        alert("Correct!");
+    } alert("Incorrect!");
+}
+
+function buttonClickFalse(correctAns){
+    if (correctAns === "False"){
+        alert("Correct!");
+    } alert("Incorrect!");
+}
+
+// score - not working at the moment
+let games = 0
+let wins = 0
+let losses = 0
+
+let gameTotal = document.querySelector(".games_played") 
+gameTotal.innerText = "Games Played: " + games.toString()
+let winTotal = document.querySelector(".wins") 
+winTotal.innerText = "Wins: " + wins.toString()
+let lossTotal = document.querySelector(".losses") 
+lossTotal.innerText = "Losses: " + losses.toString()
 
 // Answers
 
@@ -47,69 +88,6 @@ losses = 0
 //     };
 
 //console.log(answerCheck);
-
-//button
-
-let trueBtn = document.querySelector("#true")
-let falseBtn = document.querySelector("#false")
-
-trueBtn.addEventListener("click", whenTrue);
-falseBtn.addEventListener("click", whenFalse);
-
-
-
-
-    function whenTrue (){
-        
-        if (string === "True"){
-        alert ("Correct!")
-        games++;
-        wins++;
-        return}
-    else if (string !== "True") {
-        alert ("Incorrect!")
-        games++;
-        losses++;
-    }
-    }
-
-
-function whenFalse(){
-    if (string === "False"){
-        alert ("Correct!")
-        games++;
-        wins++;
-    } else if (string !== "True"){
-        alert ("Incorrect!")
-        games++;
-        losses++;
-    };
-}
-
-
-// Question
-
-let question = document.querySelector(".Question")
-
-function newQuestion (string) {
-    let p = document.createElement("p")
-    p.innerText = string;
-    question.appendChild(p);
-};
-
-
-//Username
-let userName = document.querySelector(".user_name")
-let  userBtn = document.querySelector(".user_button")
-let userHeader = document.querySelector(".header-one")
-userBtn.addEventListener("click", function userCreator(){
-    
-    userHeader.innerText = "Player: " + userName.value
-
-})
-
-// score 
-
 
 //solo player game - player one
 //trivia question change after each answer given
@@ -140,11 +118,6 @@ userBtn.addEventListener("click", function userCreator(){
 //give correct or incorrect result (not the answer)
 //add to score tally and questions answered tally
 //add eventlistener to refresh questions and answers
-//
-//<h1 class ="header-one">Player:</h1>
-//<input class="user_name" placeholder="Enter Your Username"></input>
-//<button class = "user_button">Create User</button>
-
 
 
 
