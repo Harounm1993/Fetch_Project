@@ -18,7 +18,7 @@ getApi();
 let games = document.querySelector(".games_played")
 let wins = document.querySelector(".wins")
 let losses = document.querySelector(".losses")
-
+games.innertext = 14
 games = 0
 wins = 0
 losses = 0
@@ -50,36 +50,40 @@ losses = 0
 
 //button
 
-let trueBtn = document.querySelector(".true")
-let falseBtn = document.querySelector(".false")
+let trueBtn = document.querySelector("#true")
+let falseBtn = document.querySelector("#false")
 
 trueBtn.addEventListener("click", whenTrue);
 falseBtn.addEventListener("click", whenFalse);
 
-function whenTrue(){
-    //if (string === "True"){
-        alert = "Correct!"
+
+
+
+    function whenTrue (){
+        
+        if (string === "True"){
+        alert ("Correct!")
         games++;
         wins++;
-        return
-    //} else if (string !== "True"){
-        alert = "Incorrect!"
+        return}
+    else if (string !== "True") {
+        alert ("Incorrect!")
         games++;
         losses++;
-    //};
+    }
+    }
 
-}
 
 function whenFalse(){
-    //if (string === "False"){
-        alert = "Correct!"
+    if (string === "False"){
+        alert ("Correct!")
         games++;
         wins++;
-    //} else if (string !== "True"){
-        alert = "Incorrect!"
+    } else if (string !== "True"){
+        alert ("Incorrect!")
         games++;
         losses++;
-    //};
+    };
 }
 
 
@@ -140,7 +144,6 @@ userBtn.addEventListener("click", function userCreator(){
 //<h1 class ="header-one">Player:</h1>
 //<input class="user_name" placeholder="Enter Your Username"></input>
 //<button class = "user_button">Create User</button>
-
 
 
 
