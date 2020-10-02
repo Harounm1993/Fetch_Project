@@ -1,16 +1,57 @@
 async function getApi(){
-    let response = await fetch ("https://opentdb.com/api.php?amount=10");
+    let response = await fetch (`https://opentdb.com/api.php?amount=10&type=boolean`);
     let data = await response.json();
     console.log(data);
     console.log(data.results[0].question)
     console.log(data.results[0].incorrect_answers[0]);
     console.log(data.results[0].correct_answer);
-
+ 
+    //answerOne.value = data.results[0].correct_answer;
+  
+    newQuestion(data.results[0].question)
 };
+
 
 getApi();
 
-let para = document.querySelector("p");
+// Answers
+let trueAnswer = document.querySelector(".true")
+let falseAnswer = document.querySelector(".false")
+
+// Question
+
+let question = document.querySelector(".Question")
+
+function newQuestion (string) {
+    let p = document.createElement("p")
+    p.innerText = string;
+    question.appendChild(p);
+};
+
+
+
+
+//Username
+let userName = document.querySelector(".user_name")
+let  userBtn = document.querySelector(".user_button")
+let userHeader = document.querySelector(".header-one")
+userBtn.addEventListener("click", function userCreator(){
+    
+    userHeader.innerText = "Player: " + userName.value
+
+})
+
+// score 
+
+let playAgain = true; 
+let games = 0
+let wins = 0
+let losses = 0
+
+
+
+
+
 
 //solo player game - player one
 //trivia question change after each answer given

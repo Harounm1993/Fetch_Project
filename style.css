@@ -1,4 +1,4 @@
-body {
-    background: url ("image1.jpg");
+* {
+    background-image: url("astro.jpg");
     background-size: cover;
 }
