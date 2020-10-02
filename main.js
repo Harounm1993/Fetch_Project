@@ -1,22 +1,87 @@
+//let questions = undefined;
+
 async function getApi(){
     let response = await fetch (`https://opentdb.com/api.php?amount=10&type=boolean`);
     let data = await response.json();
     console.log(data);
-    console.log(data.results[0].question)
-    console.log(data.results[0].incorrect_answers[0]);
-    console.log(data.results[0].correct_answer);
- 
-    //answerOne.value = data.results[0].correct_answer;
-  
-    newQuestion(data.results[0].question)
+    console.log("this is question " + data.results[0].question)
+    console.log("this is correct " + data.results[0].correct_answer);
+    console.log("this is incorrect " + data.results[0].incorrect_answers[0]);
+    newQuestion(data.results[0].question);
+    //questions = data.results[0].correct_answer;
+    whenTrue(data.results[0].correct_answer);
+    whenFalse(data.results[0].correct_answer);
 };
-
 
 getApi();
 
+let games = document.querySelector(".games_played")
+let wins = document.querySelector(".wins")
+let losses = document.querySelector(".losses")
+
+games = 0
+wins = 0
+losses = 0
+
 // Answers
-let trueAnswer = document.querySelector(".true")
-let falseAnswer = document.querySelector(".false")
+
+// function answerCheck(string){
+//     if (string === "True" && trueClick){
+//         alert = "Correct!"
+//         games++;
+//         wins++;
+//     } else if (string !== "True" && trueClick){
+//         alert = "Incorrect!"
+//         games++;
+//         losses++;
+//     };
+
+//     if (string === "False" && falseClick){
+//         alert = "Correct!"
+//         games++;
+//         wins++;
+//     } else if (string !== "False" && falseClick){
+//         alert = "Incorrect!"
+//         games++;
+//         losses++;
+//     };
+
+//console.log(answerCheck);
+
+//button
+
+let trueBtn = document.querySelector(".true")
+let falseBtn = document.querySelector(".false")
+
+trueBtn.addEventListener("click", whenTrue);
+falseBtn.addEventListener("click", whenFalse);
+
+function whenTrue(){
+    //if (string === "True"){
+        alert = "Correct!"
+        games++;
+        wins++;
+        return
+    //} else if (string !== "True"){
+        alert = "Incorrect!"
+        games++;
+        losses++;
+    //};
+
+}
+
+function whenFalse(){
+    //if (string === "False"){
+        alert = "Correct!"
+        games++;
+        wins++;
+    //} else if (string !== "True"){
+        alert = "Incorrect!"
+        games++;
+        losses++;
+    //};
+}
+
 
 // Question
 
@@ -27,8 +92,6 @@ function newQuestion (string) {
     p.innerText = string;
     question.appendChild(p);
 };
-
-
 
 
 //Username
@@ -42,15 +105,6 @@ userBtn.addEventListener("click", function userCreator(){
 })
 
 // score 
-
-let playAgain = true; 
-let games = 0
-let wins = 0
-let losses = 0
-
-
-
-
 
 
 //solo player game - player one
